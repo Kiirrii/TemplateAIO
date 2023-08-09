@@ -4,8 +4,6 @@
 #include "Others.h"
 #include "Amumu.h"
 
-#define W_HASH buff_hash("amumuw")
-
 namespace amumu
 {
 	void on_update();
@@ -389,6 +387,11 @@ namespace amumu
 		return r->range() * r_pred::range_slider->get_int() / 100.f;
 	}
 
+	bool w_is_active()
+	{
+		return w->toogle_state() == 2;
+	}
+
 	/*****************************************
 			COMBO/HARASS SPELL USAGE	      
 	****************************************/
@@ -417,7 +420,7 @@ namespace amumu
 		const auto w_mana = combo ? combo::w_mana->get_int() : harass::w_mana->get_int();
 
 		if (!w->is_ready() || !use_w) return;
-		if (myhero->has_buff(W_HASH)) return;
+		if (w_is_active()) return;
 		if (myhero->get_mana_percent() < w_mana) return;
 		if (myhero->count_enemies_in_range(w->range()) == 0) return;
 
@@ -430,7 +433,7 @@ namespace amumu
 		const auto w_mana = combo ? combo::w_mana->get_int() : harass::w_mana->get_int();
 
 		if (!w->is_ready() || !use_w) return;
-		if (!myhero->has_buff(W_HASH)) return;
+		if (!w_is_active()) return;
 		if (myhero->count_enemies_in_range(w->range() * 1.1f) > 0 && myhero->get_mana_percent() > w_mana) return;
 
 		w->cast();
@@ -464,15 +467,16 @@ namespace amumu
 	{
 		if (!lane_clear_menu::use_w->get_bool() || !w->is_ready()) return;
 
+		const int all_minions  = helpers::count_minions(myhero->get_position(), w->range(), "both");
 		const int minion_count = helpers::count_minions(myhero->get_position(), w->range(), "enemy");
 		const int w_mana       = lane_clear_menu::w_mana->get_int();
 		const int hit_w        = lane_clear_menu::hit_w->get_int();
 
-		if (!myhero->has_buff(W_HASH) && w_mana < myhero->get_mana_percent() && minion_count >= hit_w)
+		if (!w_is_active() && w_mana < myhero->get_mana_percent() && minion_count >= hit_w)
 		{
 			w->cast();
 		}
-		if (myhero->has_buff(W_HASH) && (w_mana >= myhero->get_mana_percent() || minion_count == 0))
+		if (w_is_active() && (w_mana >= myhero->get_mana_percent() || all_minions == 0))
 		{
 			w->cast();
 		}
@@ -512,14 +516,15 @@ namespace amumu
 	{
 		if (!jungle_clear_menu::use_w->get_bool() || !w->is_ready()) return;
 
+		const int all_minions  = helpers::count_minions(myhero->get_position(), w->range(), "both");
 		const int minion_count = helpers::count_minions(myhero->get_position(), w->range(), "neutral");
 		const int w_mana       = jungle_clear_menu::w_mana->get_int();
 
-		if (!myhero->has_buff(W_HASH) && w_mana < myhero->get_mana_percent() && minion_count > 0)
+		if (!w_is_active() && w_mana < myhero->get_mana_percent() && minion_count > 0)
 		{
 			w->cast();
 		}
-		if (myhero->has_buff(W_HASH) && (w_mana >= myhero->get_mana_percent() || minion_count == 0))
+		if (w_is_active() && (w_mana >= myhero->get_mana_percent() || all_minions == 0))
 		{
 			w->cast();
 		}
