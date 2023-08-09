@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="src\Champions">
+      <UniqueIdentifier>{db330bfb-fb78-45a1-a9a4-2bf9d13f41e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utilities">
+      <UniqueIdentifier>{480ced1a-be50-40c6-be97-5802fb9841c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Champions\Amumu">
+      <UniqueIdentifier>{922ad738-fe7a-47a7-b31b-b6915a9aa08e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="plugin_sdk">
+      <UniqueIdentifier>{385ce905-51b5-41d2-8bb1-d3645ac8a62b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="Permashow.cpp">
+      <Filter>src\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Others.cpp">
+      <Filter>src\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers.cpp">
+      <Filter>src\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Amumu.cpp">
+      <Filter>src\Champions\Amumu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\plugin_sdk\clipper.cpp">
+      <Filter>plugin_sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="..\plugin_sdk\plugin_sdk.cpp">
+      <Filter>plugin_sdk</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Permashow.hpp">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Others.h">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers.h">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Amumu.h">
+      <Filter>src\Champions\Amumu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\plugin_sdk\clipper.h">
+      <Filter>plugin_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\plugin_sdk\cpplinq.h">
+      <Filter>plugin_sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="..\plugin_sdk\plugin_sdk.hpp">
+      <Filter>plugin_sdk</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
